@@ -1,4 +1,4 @@
-fetch("https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=nature")
+fetch("https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=forest")
     .then(res => res.json())
     .then(data => {
         document.body.style.backgroundImage = `url(${data.urls.regular})`
@@ -38,18 +38,18 @@ function getCurrentTime() {
 
 setInterval(getCurrentTime, 1000)
 
+/// Weather doesnt display, need to figure out how to get it.
+
 navigator.geolocation.getCurrentPosition(position => {
     fetch(`https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric`)
-        
-    //Even tried this API, it didn't work http://openweathermap.org
-    .then(res => {
+        .then(res => {
             if (!res.ok) {
                 throw Error("Weather data not available")
             }
             return res.json()
         })
         .then(data => {
-            const iconUrl = `http://openweathermap.org/img/wn/${data.weather[].icon}@2x.png`
+            const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
             document.getElementById("weather").innerHTML = `
                 <img src=${iconUrl} />
                 <p class="weather-temp">${Math.round(data.main.temp)}º</p>
