@@ -1,3 +1,5 @@
+
+
 fetch("https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=forest")
     .then(res => res.json())
     .then(data => {
@@ -39,6 +41,8 @@ function getCurrentTime() {
 setInterval(getCurrentTime, 1000)
 
 /// Weather doesnt display, need to figure out how to get it.
+
+//Fixed weather bug--location wasnt activated.
 
 navigator.geolocation.getCurrentPosition(position => {
     fetch(`https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric`)
